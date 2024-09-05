@@ -52,15 +52,15 @@
     <fieldset>
         <form id="formPesquisa">
             <label for="nome">Nome:</label>    
-            <input type="text" id="nome" required  placeholder="Digite o nome">
+            <input type="text" id="nome" placeholder="Digite o nome">
  
             <label for="idade">Idade:</label>    
-            <input type="number" id="idade" required placeholder="Digite a idade">
+            <input type="number" id="idade" placeholder="Digite a idade">
  
-            <span id="errorIdade" class="error"></span>  
+           
 
-            <label for="email">Email:</label>    
-            <input type="email" id="email" required placeholder="Digite o email">
+            <label for="estado">Estado:</label>    
+            <input type="text" id="estado" placeholder="Digite o estado">
 
             <button type="submit">Pesquisar</button>
         </form>
@@ -85,29 +85,41 @@
 
         function pesquisarDados(data, nome, idade, email) {
             return data.filter(function(usuario) {
-                var Nome = true;
-                var Idade = true;
-                var Email = true;
+                var Bairro = true;
+                var Cidade = true;
+                var Cep = true;
+                var Estado = true;
+                var Logradouro = true;
 
-                if (nome !== "") {
-                    if (usuario.nome.indexOf(nome) === -1) {
-                        Nome = false;
+                if (bairro !== "") {
+                    if (usuario.bairro.indexOf(bairro) === -1) {
+                        Bairro = false;
                     }
                 }
 
-                if (idade !== "") {
-                    if (usuario.idade != idade) {
-                        Idade = false;
+                if (cidade !== "") {
+                    if (usuario.cidade != cidade) {
+                       Cidade = false;
                     }
                 }
 
-                if (email !== "") {
-                    if (usuario.email.indexOf(email) === -1) {
-                        Email = false;
+                if (cep !== "") {
+                    if (usuario.cep.indexOf(cep) === -1) {
+                        Cep = false;
+                    }
+                }
+                 if (estado !== "") {
+                    if (usuario.estado.indexOf(estado) === -1) {
+                        estado = false;
+                    }
+                }
+                 if (logradouro !== "") {
+                    if (usuario.logradouro.indexOf(logradouro) === -1) {
+                        logradouro = false;
                     }
                 }
 
-                return Nome && Idade && Email;
+                return Cep && Bairro && Cidade && Estado && Logradouro;
             });
         }
 
@@ -121,7 +133,7 @@
             } else {
                 resultados.forEach(function(usuario) {
                     var paragrafo = document.createElement('p');
-                    paragrafo.textContent = "Nome: " + usuario.nome + ", Idade: " + usuario.idade + ", Email: " + usuario.email;
+                    paragrafo.textContent = "Bairro: " + usuario.bairro + ", Cep: " + usuario.cep + ", Cidade: " + usuario.cidade + ", Estado: " + usuario.estado ", Logradouro:" + usuario.logradouro; 
                     divResultados.appendChild(paragrafo);
                 });
             }
@@ -130,26 +142,19 @@
         document.getElementById('formPesquisa').addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            var nome = document.getElementById('nome').value;
-            var idade = document.getElementById('idade').value;
-            var email = document.getElementById('email').value;
-            var errorIdade = document.getElementById('errorIdade');
+            var cidade = document.getElementById('cidade').value;
+            var cep = document.getElementById('cep').value;
+            var bairro = document.getElementById('bairro').value;
+            var estado = document.getElementById('estado').value;
+            var logradouro = document.getElementById('logradouro').value;
+            
+            
 
              
-            if (idade <= 0) {
-                errorIdade.textContent = "A idade não pode ser um valor negativo.";
-                return;  
-            } else {
-                errorIdade.textContent = "";  
-            }
-        if (idade > 120) {
-            errorIdade.textContent =  "Ninguém acima dessa idade ainda vivo";
-            return; } else{
-                errorIdade.textContent ="";
-            }
+           
         
             var data = await lerJSON();
-            var resultados = pesquisarDados(data, nome, idade, email);
+            var resultados = pesquisarDados(data, bairro, cidade, estado, cep, logradouro);
 
             exibirResultados(resultados);
         });
