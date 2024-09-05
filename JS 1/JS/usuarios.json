@@ -1,36 +1,26 @@
-
-[
-    
-    {
+{
+    "usuarios": [
+      {
+     
         "nome": "João da Silva",
         "idade": 30,
-        "email": "joao.silva@example.com"
-    },
-   
-    {
-        "nome": "Maria Oliveira",
-        "idade": 28,
-        "email": "maria.oliveira@example.com"
-    },
-    
-    {
-        "nome": "Lucas Guedes",
-        "idade": 15,
-        "email": "Lucas.guedes@gmail.com"
-    },
-    {
-        "nome": "Joan Carvalho",
-        "idade": 70,
-        "email": "joana.carvalho@yahoo.com"
-    },
-    {
-        "nome": "Nicolas César",
-        "idade": 53,
-        "email": "Nicolas@hotmail.com"
-    },
-    {
-        "nome": "Sei lá",
-        "idade": 35,
-        "email": "seila@outlook.com"
-    }
-]
+        "email": "joao.silva@example.com",
+        "pais": "Brasil",
+        "enderecos": [
+          {
+            "tipo": "residencial",
+            "rua": "Rua das Flores",
+            "numero": 123,
+            "cidade": "São Paulo",
+            "estado": "SP",
+            "cep": "01001-000"
+          },
+          {
+            "tipo": "comercial",
+            "rua": "Avenida Central",
+            "numero": 456,
+            "cidade": "São Paulo",
+            "estado": "SP",
+            "cep": "01002-000"
+          },
+        ]
